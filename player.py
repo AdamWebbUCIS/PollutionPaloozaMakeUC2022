@@ -1,5 +1,6 @@
 
 import pygame
+import os 
 
 class Player(pygame.sprite.Sprite): 
     def __init__(self, is_alive=True):
@@ -10,8 +11,8 @@ class Player(pygame.sprite.Sprite):
         self.speed = 3
         
         self.player_emotions = {
-            "happy": pygame.image.load('assets\sprites\Earth_Lover_ 1.png').convert_alpha(), 
-            "scared_player": pygame.image.load('assets\sprites\Earth_Lover_.png').convert_alpha()
+            "happy": pygame.image.load(os.path.join('assets','sprites','Earth_Lover_ 1.png')).convert_alpha(), 
+            "scared_player": pygame.image.load(os.path.join('assets','sprites','Earth_Lover_.png')).convert_alpha()
         }
         
         self.image = pygame.transform.scale(self.player_emotions["happy"], (50,50))

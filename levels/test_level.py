@@ -1,3 +1,4 @@
+import os
 import pygame
 from player import Player
 from level import Level
@@ -12,7 +13,7 @@ class TestLevel(Level):
     def draw_level(self):
         super().draw_level()
         self.group.add(self.player)
-        img = pygame.image.load("assets\sprites\Scary_Sea_Monster_.png").convert_alpha()
+        img = pygame.image.load(os.path.join("assets","sprites","Scary_Sea_Monster_.png")).convert_alpha()
         r = pygame.transform.scale(img, (100, 100))
         self.screen.blit(r, (0-self.screen_pos[0],0-self.screen_pos[1]))
         self.group.draw(self.screen)
