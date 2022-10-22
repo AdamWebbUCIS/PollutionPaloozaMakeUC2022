@@ -7,8 +7,8 @@ class Level:
         self.screen = screen  
         self.passed = passed
     
-
     def draw_level(self):
         self.screen.fill((66, 135, 245))
+
         
 

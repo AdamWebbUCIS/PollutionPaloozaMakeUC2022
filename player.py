@@ -1,3 +1,4 @@
+
 import pygame
 
 class Player(pygame.sprite.Sprite): 
@@ -24,3 +25,4 @@ class Player(pygame.sprite.Sprite):
     
     def update(self):
         self.check_player_state()
+

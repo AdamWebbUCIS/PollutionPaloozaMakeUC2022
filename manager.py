@@ -1,3 +1,4 @@
+
 import pygame 
 from player import Player
 from level import Level
@@ -25,4 +26,5 @@ class Manager:
     def run_level(self):
         self.get_user_input()
         self.active_level.draw_level()
+
 
