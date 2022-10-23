@@ -17,16 +17,16 @@ class Level1(Level):
         self.turtle_list = []
 
         for _ in range(5):
-            x = random.randint(0,1000)
-            y = random.randint(0, 800)
+            x = random.randint(-1400,2400)
+            y = random.randint(-1500,2300)
             turtle = Turtle(x, y, 100, 100, self.screen, self.screen_pos)
             self.turtle_list.append(turtle)
         
         self.trash_list = []
         
-        for _ in range(10):
-            x = random.randint(0,1000)
-            y = random.randint(0, 800)
+        for _ in range(20):
+            x = random.randint(-1400,2400)
+            y = random.randint(-1500,2300)
             piece_of_trash = Trash(x, y, 100, 100, self.screen, self.screen_pos)
             self.trash_list.append(piece_of_trash)
         
@@ -34,7 +34,8 @@ class Level1(Level):
 
     def draw_level(self):
         super().draw_level()
-        self.screen.blit(self.background, (0-self.screen_pos[0],0-self.screen_pos[1]))
+        self.screen.fill((0,0,0))
+        self.screen.blit(self.background, (-1500-self.screen_pos[0],-1600-self.screen_pos[1]))
 
         for trash in self.trash_list:
             trash.blit()

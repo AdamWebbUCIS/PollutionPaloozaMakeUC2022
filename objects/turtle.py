@@ -1,6 +1,7 @@
 import os
 import pygame
 from objects.object import BaseObject
+from random import randint
 
 class Turtle(BaseObject):
     def __init__(self, x, y, width, height, screen, screen_pos) -> None:
@@ -13,6 +14,14 @@ class Turtle(BaseObject):
         self.img = pygame.transform.scale(self.turtle, (self.width, self.height))
         self.rect = self.img.get_rect(topleft=(self.x-self.screen_pos[0], self.y-self.screen_pos[1]))
         self.swim_speed = 3
+
+        self.x_velocity, self.y_velocity = 0,0
+
+        self.x_velocity = randint(0,2)
+        self.y_velocity = randint(0,2)
+
+        self.x += self.x_velocity
+        self.y += self.y_velocity
     
     def blit(self):
         if self.is_tangled:
