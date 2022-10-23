@@ -11,6 +11,7 @@ class OilSpill(BaseObject):
 
             self.x_velocity = random.uniform(0, 0.3)
             self.y_velocity = random.uniform(0, 0.3)
+            self.cleaned_up_time = 0
 
             self.trash = {
                 "oil": pygame.transform.rotozoom(pygame.image.load(os.path.join("assets", "sprites", "Oil.png")).convert_alpha(), 0, 0.5),

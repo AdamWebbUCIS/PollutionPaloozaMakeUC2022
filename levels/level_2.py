@@ -1,3 +1,4 @@
+from gc import is_finalized
 import os
 import pygame
 from player import Player
@@ -15,14 +16,16 @@ class Level2(Level):
         self.shark_list = []
         self.oil_spill_list = []
         self.font = pygame.font.Font(None, 25)
+        self.frame_count = 0
+        self.last_hit = 0
         
-        for _ in range(20):
+        for _ in range(15):
             x = random.randint(-1400,2400)
             y = random.randint(-1500,2300)
-            shark = Shark(x, y, 100, 100, self.screen, self.screen_pos)
+            shark = Shark(x, y, 50, 50, self.screen, self.screen_pos)
             self.shark_list.append(shark)
         
-        for _ in range(20):
+        for _ in range(5):
             x = random.randint(-1400,2400)
             y = random.randint(-1500,2300)
             oil_spill = OilSpill(x, y, 100, 100, self.screen, self.screen_pos)
@@ -48,6 +51,16 @@ class Level2(Level):
                 self.oil_spill_list[i].y_velocity = -(random.uniform(0,0.3))
             elif oil_spill.y < -1500:
                 self.oil_spill_list[i].y_velocity = (random.uniform(0,0.3))
+            
+            if oil_spill.cleaned_up_time <= 500:
+                if self.player.rect.colliderect(oil_spill.get_rect()):
+                    self.oil_spill_list[i].cleaned_up_time += 1
+                else:
+                    self.oil_spill_list[i].cleaned_up_time = 0
+            else:
+                if self.player.is_alive:
+                    self.oil_spill_list.pop(i)
+
             oil_spill.blit()
 
         for i, shark in enumerate(self.shark_list):
@@ -63,9 +76,21 @@ class Level2(Level):
                 self.shark_list[i].y_velocity = -1 *(random.uniform(1,1.5))
             elif shark.y < -1500:
                 self.shark_list[i].y_velocity = (random.uniform(1,1.5))
+
+            if self.player.rect.colliderect(shark.get_rect()):
+                if self.player.health > 0:
+                    self.player.health -= 0.32
             shark.blit()
 
-        
-        
+        self.display_message(self.font, [f"Health: {int(self.player.health)}"], 0, 0)
+        self.display_message(self.font, [f"Oil Spills: {len(self.oil_spill_list)}"], 850, 0)
+
         self.group.add(self.player)
         self.group.draw(self.screen)
+        self.frame_count += 1
+
+        if self.player.health <= 0:
+            self.display_message(self.font, ["GAME OVER YOU DIDN'T","FIX THE OIL SPILL!"], 450, 375)
+            self.player.is_alive = False
+        elif len(self.oil_spill_list) <= 0:
+            self.display_message(self.font, ["YOU WON!!!"], 480, 375)

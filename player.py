@@ -27,7 +27,7 @@ class Player(pygame.sprite.Sprite):
             pygame.transform.flip(pygame.transform.scale(self.player_net[self.player_index], (250, 250)), True, False)
         ]
         self.image = self.images[self.image_index]
-
+        self.health = 100
         self.rect = self.image.get_rect(topleft = (self.x_pos, self.y_pos))
 
     def extend_pole(self):

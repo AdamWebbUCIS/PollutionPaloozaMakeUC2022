@@ -1,6 +1,4 @@
 import os
-from tkinter import Y
-from turtle import back
 import pygame
 from player import Player
 from level import Level
@@ -18,8 +16,6 @@ class Level1(Level):
         self.tangled_turtles = 0
         self.font = pygame.font.Font(None, 25)
         
-
-
         for _ in range(10):
             x = random.randint(-1400,2400)
             y = random.randint(-1500,2300)
@@ -87,10 +83,10 @@ class Level1(Level):
         self.display_message(self.font, [f"Tangled Turtles: {self.tangled_turtles}"],0,0)
         self.display_message(self.font, [f"Trash Left: {len(self.trash_list)}"],850,0)
 
-        
         self.group.add(self.player)
         self.group.draw(self.screen)
-        # if self.tangled_turtles <= 0 and len(self.trash_list) <= 0:
-        if True:
+
+        if self.tangled_turtles <= 0 and len(self.trash_list) <= 0:
             self.passed = True
             self.display_message(self.font, ["YOU WIN!!!"], 480, 375)
+            self.player.is_alive = False
