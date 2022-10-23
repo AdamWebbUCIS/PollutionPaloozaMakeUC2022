@@ -51,9 +51,12 @@ class Level1(Level):
                 self.turtle_list[i].y_velocity = (random.uniform(0,0.3))
 
             trash.blit()
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_c] and (self.player.player_index == 4):
+                if self.player.rect.colliderect(trash.get_rect()):
+                    self.trash_list.pop(i)
 
         for i, turtle in enumerate(self.turtle_list):
-
             for trash in self.trash_list:
                 if trash.get_rect().colliderect(turtle.get_rect()):
                     turtle.toggle_tangled(True)
