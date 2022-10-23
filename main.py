@@ -7,9 +7,8 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((1000, 800))
     clock = pygame.time.Clock()
-    
-    player = Player()
-    manager = Manager(player, screen)
+
+    manager = Manager(screen, clock)
 
     while True: 
         for event in pygame.event.get():

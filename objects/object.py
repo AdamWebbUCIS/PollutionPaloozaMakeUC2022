@@ -8,9 +8,7 @@ class BaseObject():
         self.width = width
         self.height = height
         self.screen = screen
-        
         self.screen_pos = screen_pos
-
         self.img = None
 
     def get_rect(self):
