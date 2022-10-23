@@ -37,7 +37,20 @@ class Level1(Level):
         self.screen.fill((0,0,0))
         self.screen.blit(self.background, (-1500-self.screen_pos[0],-1600-self.screen_pos[1]))
 
-        for trash in self.trash_list:
+        for i, trash in enumerate(self.trash_list):
+            self.trash_list[i].x += self.trash_list[i].x_velocity
+            self.trash_list[i].y += self.trash_list[i].y_velocity
+
+            if trash.x > 2400:
+                self.trash_list[i].x_velocity = -(random.uniform(0,0.3))
+            elif trash.x < -1400:
+                self.trash_list[i].x_velocity = (random.uniform(0,0.3))
+            
+            if trash.y > 2300:
+                self.trash_list[i].y_velocity = -(random.uniform(0,0.3))
+            elif trash.y < -1500:
+                self.turtle_list[i].y_velocity = (random.uniform(0,0.3))
+
             trash.blit()
 
         for i, turtle in enumerate(self.turtle_list):
@@ -52,15 +65,14 @@ class Level1(Level):
             self.turtle_list[i].y += self.turtle_list[i].y_velocity
 
             if turtle.x > 2400:
-                self.turtle_list[i].x_velocity = -(random.randint(1,5))
+                self.turtle_list[i].x_velocity = -(random.uniform(1,1.5))
             elif turtle.x < -1400:
-                print("LESS THAN -1400")
-                self.turtle_list[i].x_velocity = (random.randint(1,5))
+                self.turtle_list[i].x_velocity = (random.uniform(1,1.5))
             
             if turtle.y > 2300:
-                self.turtle_list[i].y_velocity = -1 *(random.randint(1,5))
+                self.turtle_list[i].y_velocity = -1 *(random.uniform(1,1.5))
             elif turtle.y < -1500:
-                self.turtle_list[i].y_velocity = (random.randint(1,5))
+                self.turtle_list[i].y_velocity = (random.uniform(1,1.5))
             turtle.blit()
         
         self.group.add(self.player)

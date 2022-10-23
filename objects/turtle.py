@@ -2,6 +2,7 @@ import os
 import pygame
 from objects.object import BaseObject
 from random import randint
+import random
 
 class Turtle(BaseObject):
     def __init__(self, x, y, width, height, screen, screen_pos) -> None:
@@ -17,8 +18,8 @@ class Turtle(BaseObject):
 
         self.x_velocity, self.y_velocity = 0,0
 
-        self.x_velocity = randint(1,5)
-        self.y_velocity = randint(1,5)
+        self.x_velocity = random.uniform(1,2)
+        self.y_velocity = random.uniform(1,2)
 
         self.flip = False
     
