@@ -18,14 +18,13 @@ class Manager:
         self.active_level = self.levels[self.level_index]
     
     def get_user_input(self):
-        print(self.screen_pos)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a] and self.screen_pos[0] > -1485:
             self.screen_pos[0] -= 5
-            self.player.image_index = 1
+            self.player.flip = True
         if keys[pygame.K_d] and self.screen_pos[0] < 1485:
             self.screen_pos[0] += 5
-            self.player.image_index = 0
+            self.player.flip = False
         if keys[pygame.K_w] and self.screen_pos[1] > -1585:
             self.screen_pos[1] -= 5
         if keys[pygame.K_s] and self.screen_pos[1] < 1585:

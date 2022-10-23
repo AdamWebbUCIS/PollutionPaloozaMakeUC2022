@@ -9,7 +9,7 @@ from objects.oil import OilSpill
 import random
 
 class Level2(Level):
-    def __init__(self, player: Player, screen: pygame.Surface, screen_pos=[], passed=True) -> None:
+    def __init__(self, player: Player, screen: pygame.Surface, screen_pos=[], passed=False) -> None:
         super().__init__(player, screen, passed)
         self.group = pygame.sprite.GroupSingle()
         self.screen_pos = screen_pos
@@ -53,7 +53,7 @@ class Level2(Level):
                 self.oil_spill_list[i].y_velocity = (random.uniform(0,0.3))
             
             if oil_spill.cleaned_up_time <= 500:
-                if self.player.rect.colliderect(oil_spill.get_rect()):
+                if self.player.rect.colliderect(oil_spill.get_rect()) and self.player.tool_status:
                     self.oil_spill_list[i].cleaned_up_time += 1
                 else:
                     self.oil_spill_list[i].cleaned_up_time = 0
@@ -78,7 +78,7 @@ class Level2(Level):
                 self.shark_list[i].y_velocity = (random.uniform(1,1.5))
 
             if self.player.rect.colliderect(shark.get_rect()):
-                if self.player.health > 0:
+                if self.player.health > 0 and not self.passed:
                     self.player.health -= 0.32
             shark.blit()
 
@@ -89,8 +89,9 @@ class Level2(Level):
         self.group.draw(self.screen)
         self.frame_count += 1
 
-        if self.player.health <= 0:
+        if self.player.health <= 0 and not self.passed:
             self.display_message(self.font, ["GAME OVER YOU DIDN'T","FIX THE OIL SPILL!"], 450, 375)
             self.player.is_alive = False
         elif len(self.oil_spill_list) <= 0:
             self.display_message(self.font, ["YOU WON!!!"], 480, 375)
+            self.passed = True
