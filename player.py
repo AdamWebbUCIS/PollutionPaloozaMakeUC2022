@@ -7,7 +7,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, is_alive=True):
         super().__init__()
         self.is_alive = is_alive
-        self.active_level = 2
+        self.active_level = 3
         self.x_pos = 475
         self.y_pos = 375
         self.flip = False
@@ -17,6 +17,7 @@ class Player(pygame.sprite.Sprite):
         self.player_index = 0
         self.player_tool = []
         self.tool_status = False
+        self.has_survivor = False
 
         if self.active_level is not None:
             if self.active_level == 1:
@@ -36,6 +37,10 @@ class Player(pygame.sprite.Sprite):
                     pygame.image.load(os.path.join('assets','sprites','player_net','Net_5.png')).convert_alpha(),
                     pygame.image.load(os.path.join('assets','sprites','player_net','Net_6.png')).convert_alpha(),
                     pygame.image.load(os.path.join('assets','sprites','player_net','Net_7.png')).convert_alpha()
+                ]
+            elif self.active_level == 3:
+                self.player_tool = [
+                    pygame.image.load(os.path.join('assets','sprites','player','Hazmat.png'))
                 ]
 
         self.image = pygame.transform.scale(self.player_tool[self.player_index], (250, 250))

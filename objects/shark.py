@@ -12,7 +12,6 @@ class Shark(BaseObject):
         self.shark = pygame.image.load(os.path.join("assets", "sprites", "Shark.png")).convert_alpha()
         self.img = pygame.transform.scale(self.shark, (self.width, self.height))
         self.rect = self.img.get_rect(topleft=(self.x-self.screen_pos[0], self.y-self.screen_pos[1]))
-        print(self.rect.width)
         self.swim_speed = 3
 
         self.x_velocity, self.y_velocity = 0,0

@@ -4,7 +4,6 @@ import pygame
 from player import Player
 from level import Level
 from objects.shark import Shark
-from objects.turtle import Turtle
 from objects.oil import OilSpill
 import random
 
