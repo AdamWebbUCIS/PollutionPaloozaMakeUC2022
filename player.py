@@ -7,54 +7,59 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, is_alive=True):
         super().__init__()
         self.is_alive = is_alive
+        self.active_level = 2
         self.x_pos = 475
         self.y_pos = 375
+        self.flip = False
         
         self.player_index = 0
-        self.player_net = [
-            pygame.image.load(os.path.join('assets','sprites','player','Top_View_Boat 5.png')).convert_alpha(),
-            pygame.image.load(os.path.join('assets','sprites','player','Top_View_Boat 4.png')).convert_alpha(),
-            pygame.image.load(os.path.join('assets','sprites','player','Top_View_Boat 3.png')).convert_alpha(),
-            pygame.image.load(os.path.join('assets','sprites','player','Top_View_Boat 2.png')).convert_alpha(),
-            pygame.image.load(os.path.join('assets','sprites','player','Top_View_Boat 1.png')).convert_alpha()
-        ]
+        self.player_tool = []
 
-        self.active_level = None
-
-        self.image_index = 0
-        self.images = [
-            pygame.transform.scale(self.player_net[self.player_index], (250, 250)),
-            pygame.transform.flip(pygame.transform.scale(self.player_net[self.player_index], (250, 250)), True, False)
-        ]
-        self.image = self.images[self.image_index]
-
-        self.rect = self.image.get_rect(topleft = (self.x_pos, self.y_pos))
-
-    def extend_pole(self):
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_e]:
-            if (self.player_index < 4):
-                self.player_index += 1
-                self.images = [
-                    pygame.transform.scale(self.player_net[self.player_index], (250, 250)),
-                    pygame.transform.flip(pygame.transform.scale(self.player_net[self.player_index], (250, 250)), True, False)
+        if self.active_level is not None:
+            if self.active_level == 1:
+                self.player_tool = [
+                    pygame.image.load(os.path.join('assets','sprites','player','Top_View_Boat 5.png')).convert_alpha(),
+                    pygame.image.load(os.path.join('assets','sprites','player','Top_View_Boat 4.png')).convert_alpha(),
+                    pygame.image.load(os.path.join('assets','sprites','player','Top_View_Boat 3.png')).convert_alpha(),
+                    pygame.image.load(os.path.join('assets','sprites','player','Top_View_Boat 2.png')).convert_alpha(),
+                    pygame.image.load(os.path.join('assets','sprites','player','Top_View_Boat 1.png')).convert_alpha()
+                ]
+            elif self.active_level == 2:
+                self.player_tool = [
+                    pygame.image.load(os.path.join('assets','sprites','player_net','Net_1.png')).convert_alpha(),
+                    pygame.image.load(os.path.join('assets','sprites','player_net','Net_2.png')).convert_alpha(),
+                    pygame.image.load(os.path.join('assets','sprites','player_net','Net_3.png')).convert_alpha(),
+                    pygame.image.load(os.path.join('assets','sprites','player_net','Net_4.png')).convert_alpha(),
+                    pygame.image.load(os.path.join('assets','sprites','player_net','Net_5.png')).convert_alpha(),
+                    pygame.image.load(os.path.join('assets','sprites','player_net','Net_6.png')).convert_alpha(),
+                    pygame.image.load(os.path.join('assets','sprites','player_net','Net_7.png')).convert_alpha()
                 ]
 
-    def retract_pole(self):
+        self.image = pygame.transform.scale(self.player_tool[self.player_index], (250, 250))
+        self.rect = self.image.get_rect(topleft = (self.x_pos, self.y_pos))
+
+    def extend_tool(self):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_e]:
+            if (self.player_index < (len(self.player_tool) - 1)):
+                self.player_index += 1
+                self.update_image()
+
+    def retract_tool(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_r]:
             if (self.player_index > 0):
                 self.player_index -= 1
-                self.images = [
-                    pygame.transform.scale(self.player_net[self.player_index], (250, 250)),
-                    pygame.transform.flip(pygame.transform.scale(self.player_net[self.player_index], (250, 250)), True, False)
-                ]
-    
-    def flip_image(self):
-        self.image = self.images[self.image_index]
+                self.update_image()
+
+    def update_image(self):
+        if self.flip:
+            self.image = pygame.transform.scale(self.player_tool[self.player_index], (250, 250))
+            self.image = pygame.transform.flip(pygame.transform.scale(self.player_tool[self.player_index], (250, 250)), True, False)
+        else:
+            self.image = pygame.transform.scale(self.player_tool[self.player_index], (250, 250))
 
     def update(self):
-        self.flip_image()
-        self.extend_pole()
-        self.retract_pole()
-
+        self.update_image()
+        self.extend_tool()
+        self.retract_tool()
