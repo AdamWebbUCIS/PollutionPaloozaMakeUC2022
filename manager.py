@@ -25,7 +25,12 @@ class Manager:
             self.screen_pos[1] -= 5
         if keys[pygame.K_s]:
             self.screen_pos[1] += 5
-    
+                  
+    def switch_level(self):
+        #change active level
+        self.player.active_level = self.active_level
+
     def run_level(self):
+        self.player.update()
         self.get_user_input()
         self.active_level.draw_level()
