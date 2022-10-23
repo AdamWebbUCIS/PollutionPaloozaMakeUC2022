@@ -16,6 +16,7 @@ class Trash(BaseObject):
             }
 
             self.random_sprite = pygame.transform.rotozoom(choice(list(self.trash.values())), 0, 0.5)
+            self.rect = self.random_sprite.get_rect(topleft = (self.x, self.y))
 
         def blit(self):
             self.screen.blit(self.random_sprite, (self.x-self.screen_pos[0], self.y-self.screen_pos[1]))

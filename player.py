@@ -20,7 +20,7 @@ class Player(pygame.sprite.Sprite):
         ]
 
         self.active_level = None
-        self.image = pygame.transform.scale(self.player_net[self.player_index], (400, 400))
+        self.image = pygame.transform.scale(self.player_net[self.player_index], (250, 250))
         self.rect = self.image.get_rect(topleft = (self.x_pos, self.y_pos))
 
     def extend_pole(self):
@@ -28,14 +28,14 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_e]:
             if (self.player_index < 4):
                 self.player_index += 1
-                self.image = pygame.transform.scale(self.player_net[self.player_index], (400, 400))
+                self.image = pygame.transform.scale(self.player_net[self.player_index], (250, 250))
 
     def retract_pole(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_r]:
             if (self.player_index > 0):
                 self.player_index -= 1
-                self.image = pygame.transform.scale(self.player_net[self.player_index], (400, 400))
+                self.image = pygame.transform.scale(self.player_net[self.player_index], (250, 250))
     
     def update(self):
         self.extend_pole()
