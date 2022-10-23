@@ -32,12 +32,12 @@ class TestLevel(Level):
 
             self.trash_list.append(piece_of_trash)
         
+        self.background = pygame.image.load(os.path.join("assets", "backgrounds", "background.jpg")).convert_alpha()
 
     def draw_level(self):
         super().draw_level()
-        background = pygame.image.load(os.path.join("assets", "backgrounds", "background.jpg")).convert_alpha()
         
-        self.screen.blit(background, (0-self.screen_pos[0],0-self.screen_pos[1]))
+        self.screen.blit(self.background, (0-self.screen_pos[0],0-self.screen_pos[1]))
         self.shark1.blit()
         
         for trash in self.trash_list:
