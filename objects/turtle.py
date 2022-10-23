@@ -20,13 +20,21 @@ class Turtle(BaseObject):
         self.x_velocity = randint(1,5)
         self.y_velocity = randint(1,5)
 
-        
+        self.flip = False
     
     def blit(self):
         if self.is_tangled:
             self.img = pygame.transform.scale(self.tangled_turtle, (self.width, self.height))
         else:
             self.img = pygame.transform.scale(self.turtle, (self.width, self.height))
+        
+        if self.x_velocity > 0:
+            self.flip = False
+        elif self.x_velocity < 0:
+            self.flip = True
+
+        self.img = pygame.transform.flip(self.img, self.flip, False)
+
         self.screen.blit(self.img, (self.x-self.screen_pos[0], self.y-self.screen_pos[1]))
 
     def toggle_tangled(self, is_tangled):
