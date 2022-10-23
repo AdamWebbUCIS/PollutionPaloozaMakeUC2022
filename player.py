@@ -9,6 +9,7 @@ class Player(pygame.sprite.Sprite):
         self.is_alive = is_alive
         self.x_pos = 475
         self.y_pos = 375
+        self.hp = 5
 
         self.player_index = 0
         self.player_net = [
@@ -36,6 +37,12 @@ class Player(pygame.sprite.Sprite):
             if (self.player_index > 0):
                 self.player_index -= 1
                 self.image = pygame.transform.scale(self.player_net[self.player_index], (250, 250))
+
+    def attacked(self):
+        self.hp -= 1
+        if self.hp == 0:
+            self.is_alive = False
+
     
     def update(self):
         self.extend_pole()
