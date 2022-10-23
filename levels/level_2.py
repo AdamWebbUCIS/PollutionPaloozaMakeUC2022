@@ -5,10 +5,10 @@ import pygame
 from player import Player
 from level import Level
 from objects.turtle import Turtle
-from objects.trash import Trash
+from objects.oil import OilSpill
 import random
 
-class Level1(Level):
+class Level2(Level):
     def __init__(self, player: Player, screen: pygame.Surface, screen_pos=[], passed=True) -> None:
         super().__init__(player, screen, passed)
         self.group = pygame.sprite.GroupSingle()
