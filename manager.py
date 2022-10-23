@@ -10,18 +10,21 @@ class Manager:
         self.player = player
         self.screen = screen
         self.screen_pos = [0,0]
-        self.active_level = TestLevel(self.player, self.screen, self.screen_pos)
+        self.levels = [
+            TestLevel(self.player, self.screen, self.screen_pos),
+        ]
+        self.active_level = self.levels[0]
     
     def get_user_input(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
-            self.screen_pos[0] -= 2
+            self.screen_pos[0] -= 5
         if keys[pygame.K_d]:
-            self.screen_pos[0] += 2
+            self.screen_pos[0] += 5
         if keys[pygame.K_w]:
-            self.screen_pos[1] -=2
+            self.screen_pos[1] -= 5
         if keys[pygame.K_s]:
-            self.screen_pos[1] += 2
+            self.screen_pos[1] += 5
     
     def run_level(self):
         self.get_user_input()

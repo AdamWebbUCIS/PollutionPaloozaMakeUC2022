@@ -18,9 +18,9 @@ def main():
                 exit()
 
         manager.run_level()
-
+        pygame.display.flip()
         pygame.display.update()
-        clock.tick(60)
+        clock.tick(128)
 
 if __name__ == "__main__":
     main()

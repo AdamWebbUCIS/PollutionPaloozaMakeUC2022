@@ -1,3 +1,5 @@
+import os
+from turtle import back
 import pygame 
 from player import Player
 
@@ -6,9 +8,7 @@ class Level:
         self.player = player
         self.screen = screen  
         self.passed = passed
-    
-    def draw_level(self):
-        self.screen.fill((66, 135, 245))
-
         
+    def draw_level(self):
+        pass
 
