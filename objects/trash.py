@@ -15,8 +15,8 @@ class Trash(BaseObject):
                 "tire": pygame.transform.scale(pygame.image.load(os.path.join("assets", "sprites", "Tire.png")).convert_alpha(),(self.width, self.height))
             }
 
-            self.random_sprite = pygame.transform.rotozoom(choice(list(self.trash.values())), 0, 0.5)
-            self.rect = self.random_sprite.get_rect(topleft = (self.x, self.y))
+            self.img = pygame.transform.rotozoom(choice(list(self.trash.values())), 0, 0.5)
+            self.rect = self.img.get_rect(topleft = (self.x-self.screen_pos[0], self.y-self.screen_pos[1]))
 
         def blit(self):
-            self.screen.blit(self.random_sprite, (self.x-self.screen_pos[0], self.y-self.screen_pos[1]))
+            self.screen.blit(self.img, (self.x-self.screen_pos[0], self.y-self.screen_pos[1]))

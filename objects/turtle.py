@@ -11,7 +11,7 @@ class Turtle(BaseObject):
         self.turtle = pygame.image.load(os.path.join("assets", "sprites", "Happy_Turtle.png")).convert_alpha()
         self.tangled_turtle = pygame.image.load(os.path.join("assets", "sprites", "Sad_Turtle.png")).convert_alpha()
         self.img = pygame.transform.scale(self.turtle, (self.width, self.height))
-
+        self.rect = self.img.get_rect(topleft=(self.x-self.screen_pos[0], self.y-self.screen_pos[1]))
         self.swim_speed = 3
     
     def blit(self):
@@ -21,9 +21,6 @@ class Turtle(BaseObject):
             self.img = pygame.transform.scale(self.turtle, (self.width, self.height))
 
         self.screen.blit(self.img, (self.x-self.screen_pos[0], self.y-self.screen_pos[1]))
-
-    def swim(self):
-        self.x += (1 - self.screen_pos)
 
     def toggle_tangled(self, is_tangled):
         self.is_tangled = is_tangled

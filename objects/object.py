@@ -14,4 +14,7 @@ class BaseObject():
         self.img = None
 
     def get_rect(self):
-        return self.img.get_rect(topleft=(self.x-self.screen_pos[0], self.y-self.screen_pos[1]))
+        if self.rect:
+            return self.img.get_rect(topleft=(self.x-self.screen_pos[0], self.y-self.screen_pos[1]))
+        else:
+            raise Exception(f"THERE'S NO RECT FOR THIS TURTLE AT POSITION {self.x}, {self.y}")

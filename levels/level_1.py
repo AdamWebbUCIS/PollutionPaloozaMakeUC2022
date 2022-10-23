@@ -36,18 +36,19 @@ class Level1(Level):
         super().draw_level()
         self.screen.blit(self.background, (0-self.screen_pos[0],0-self.screen_pos[1]))
 
-        for turtle in self.turtle_list:
-            turtle.blit()
-
-            if self.player.rect.colliderect(turtle.get_rect()):
-                    turtle.toggle_tangled(False)
-
-            for trash in self.trash_list:
-                if trash.rect.colliderect(turtle.get_rect()):
-                    turtle.toggle_tangled(True)
-        
         for trash in self.trash_list:
             trash.blit()
+
+        for turtle in self.turtle_list:
+
+            for trash in self.trash_list:
+                if trash.get_rect().colliderect(turtle.get_rect()):
+                    turtle.toggle_tangled(True)
+                    print("TRASHED!!!!")
+            if self.player.rect.colliderect(turtle.get_rect()):
+                turtle.toggle_tangled(False)
+            turtle.blit()
+        
 
         self.group.add(self.player)
         self.group.draw(self.screen)
