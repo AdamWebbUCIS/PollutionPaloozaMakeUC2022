@@ -1,6 +1,7 @@
 # Pollution Palooza
-A hackathon project created for MakueUC2022
-Devpost found [here](https://devpost.com/software/pollution-palooza)
+A hackathon project created for MakueUC2022. Devpost found [here](https://devpost.com/software/pollution-palooza)
+
+### Runing the Game 
 
 1. Clone the repo 
 ```
