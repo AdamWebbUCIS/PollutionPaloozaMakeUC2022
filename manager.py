@@ -1,4 +1,5 @@
 
+from curses import flash
 import pygame 
 from player import Player
 from level import Level
@@ -7,17 +8,19 @@ from levels.level_2 import Level2
 from levels.level_3 import Level3
 
 class Manager:
-    def __init__(self, player:Player, screen):
-        self.player = player
+    def __init__(self, screen):
         self.screen = screen
         self.screen_pos = [0,0]
         self.levels = [
-            Level1(self.player, self.screen, self.screen_pos),
-            Level2(self.player, self.screen, self.screen_pos),
-            Level3(self.player, self.screen, self.screen_pos),
+            Level1,
+            Level2,
+            Level3
         ]
+
+        self.curr_level = None
+
+        self.level_initalized = False
         self.level_index = 0
-        self.active_level = self.levels[2]
     
     def get_user_input(self):
         keys = pygame.key.get_pressed()
@@ -37,7 +40,17 @@ class Manager:
         self.player.active_level = self.active_level
 
     def run_level(self):
-        self.player.update()
-        if self.player.is_alive:
-            self.get_user_input()   
-        self.active_level.draw_level()
+        if not self.level_initalized:
+            self.player = Player(True, self.level_index)
+            self.curr_level = self.levels[self.level_index](self.player, self.screen, self.screen_pos, False)
+            self.level_initalized = True
+        if not self.curr_level.passed:
+            self.player.update()
+            if self.player.is_alive:
+                self.get_user_input()   
+            self.curr_level.draw_level()
+        else:
+            # print("NEXT LEVEL")
+            self.level_index += 1
+            self.level_initalized = False
+            

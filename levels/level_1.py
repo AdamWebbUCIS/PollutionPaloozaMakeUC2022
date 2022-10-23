@@ -7,7 +7,8 @@ from objects.trash import Trash
 import random
 
 class Level1(Level):
-    def __init__(self, player: Player, screen: pygame.Surface, screen_pos=[], passed=True) -> None:
+    def __init__(self, player: Player, screen: pygame.Surface, screen_pos=[], passed=False) -> None:
+        print("init for level1")
         super().__init__(player, screen, passed)
         self.group = pygame.sprite.GroupSingle()
         self.screen_pos = screen_pos
@@ -16,14 +17,14 @@ class Level1(Level):
         self.tangled_turtles = 0
         self.font = pygame.font.Font(None, 25)
         
-        for _ in range(10):
+        for _ in range(0):
             x = random.randint(-1400,2400)
             y = random.randint(-1500,2300)
             turtle = Turtle(x, y, 100, 100, self.screen, self.screen_pos)
             self.turtle_list.append(turtle)
         
         
-        for _ in range(20):
+        for _ in range(1):
             x = random.randint(-1400,2400)
             y = random.randint(-1500,2300)
             piece_of_trash = Trash(x, y, 100, 100, self.screen, self.screen_pos)

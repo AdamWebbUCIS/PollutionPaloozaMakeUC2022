@@ -10,6 +10,7 @@ import random
 class Level2(Level):
     def __init__(self, player: Player, screen: pygame.Surface, screen_pos=[], passed=False) -> None:
         super().__init__(player, screen, passed)
+        self.player.is_alive = True
         self.group = pygame.sprite.GroupSingle()
         self.screen_pos = screen_pos
         self.shark_list = []
@@ -18,13 +19,13 @@ class Level2(Level):
         self.frame_count = 0
         self.last_hit = 0
         
-        for _ in range(15):
+        for _ in range(0):
             x = random.randint(-1400,2400)
             y = random.randint(-1500,2300)
             shark = Shark(x, y, 50, 50, self.screen, self.screen_pos)
             self.shark_list.append(shark)
         
-        for _ in range(5):
+        for _ in range(1):
             x = random.randint(-1400,2400)
             y = random.randint(-1500,2300)
             oil_spill = OilSpill(x, y, 100, 100, self.screen, self.screen_pos)
