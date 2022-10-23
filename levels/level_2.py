@@ -63,8 +63,9 @@ class Level2(Level):
                 self.shark_list[i].y_velocity = -1 *(random.uniform(1,1.5))
             elif shark.y < -1500:
                 self.shark_list[i].y_velocity = (random.uniform(1,1.5))
-
             shark.blit()
+
+        
         
         self.group.add(self.player)
         self.group.draw(self.screen)
