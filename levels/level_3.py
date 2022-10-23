@@ -146,7 +146,7 @@ class Level3(Level):
             elif len(self.survivors) <= 0:
                 self.display_message(self.font, ["YOU BEAT ALL THE DISASTERS!","(congrats, no more people were harmed :)"], 420, 375)
                 self.passed = True
-        if self.tick <= 1000:
+        if self.tick <= 1500:
             self.instructions.draw(self.screen)
             self.description.draw(self.screen)
         else:

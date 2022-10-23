@@ -38,7 +38,7 @@ class Level2(Level):
             shark = Shark(x, y, 50, 50, self.screen, self.screen_pos)
             self.shark_list.append(shark)
         
-        for _ in range(1):
+        for _ in range(10):
             x = random.randint(-1400,2400)
             y = random.randint(-1500,2300)
             oil_spill = OilSpill(x, y, 100, 100, self.screen, self.screen_pos)
@@ -113,7 +113,7 @@ class Level2(Level):
                 self.display_message(self.font, ["YOU WON!!!"], 480, 375)
                 self.passed = True
 
-        if self.tick <= 1000:
+        if self.tick <= 1500:
             self.instructions.draw(self.screen)
             self.big_text.draw(self.screen)
         else:

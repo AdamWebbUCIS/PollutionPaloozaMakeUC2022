@@ -1,5 +1,4 @@
 
-from curses import flash
 import pygame 
 from player import Player
 from level import Level
