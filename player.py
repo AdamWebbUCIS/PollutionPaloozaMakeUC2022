@@ -10,8 +10,8 @@ class Player(pygame.sprite.Sprite):
         self.y_pos = 375
         
         self.player_emotions = {
-            "happy": pygame.image.load(os.path.join('assets','sprites','Earth_Lover_ 1.png')).convert_alpha(), 
-            "scared_player": pygame.image.load(os.path.join('assets','sprites','Earth_Lover_.png')).convert_alpha()
+            "happy": pygame.image.load(os.path.join('assets','sprites','player','Earth_Lover_ 1.png')).convert_alpha(), 
+            "scared_player": pygame.image.load(os.path.join('assets','sprites','player','Earth_Lover_.png')).convert_alpha()
         }
         
         self.image = pygame.transform.scale(self.player_emotions["happy"], (50,50))
