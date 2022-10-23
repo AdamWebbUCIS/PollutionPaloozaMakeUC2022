@@ -19,8 +19,10 @@ class Manager:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
             self.screen_pos[0] -= 5
+            self.player.image_index = 1
         if keys[pygame.K_d]:
             self.screen_pos[0] += 5
+            self.player.image_index = 0
         if keys[pygame.K_w]:
             self.screen_pos[1] -= 5
         if keys[pygame.K_s]:
