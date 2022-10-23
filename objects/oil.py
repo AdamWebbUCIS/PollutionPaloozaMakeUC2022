@@ -13,11 +13,11 @@ class OilSpill(BaseObject):
             self.y_velocity = random.uniform(0, 0.3)
 
             self.trash = {
-                "oil": pygame.transform.scale(pygame.image.load(os.path.join("assets", "sprites", "Bottle 1.png")).convert_alpha(),(self.width, self.height)),
-                "fire_oil": pygame.transform.scale(pygame.image.load(os.path.join("assets", "sprites", "Bottle.png")).convert_alpha(),(self.width, self.height)),
+                "oil": pygame.transform.rotozoom(pygame.image.load(os.path.join("assets", "sprites", "Oil.png")).convert_alpha(), 0, 0.5),
+                "fire_oil": pygame.transform.rotozoom(pygame.image.load(os.path.join("assets", "sprites", "Fire.png")).convert_alpha(),0, 0.5),
              }
 
-            self.img = pygame.transform.rotozoom(choice(list(self.trash.values())), 0, 0.5)
+            self.img = choice(list(self.trash.values()))
             self.rect = self.img.get_rect(topleft=(self.x-self.screen_pos[0], self.y-self.screen_pos[1]))
             
         def blit(self):
