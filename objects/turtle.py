@@ -18,8 +18,8 @@ class Turtle(BaseObject):
 
         self.x_velocity, self.y_velocity = 0,0
 
-        self.x_velocity = random.uniform(1,2)
-        self.y_velocity = random.uniform(1,2)
+        self.x_velocity = random.uniform(1,1.5)
+        self.y_velocity = random.uniform(1,1.5)
 
         self.flip = False
     
