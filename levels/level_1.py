@@ -9,11 +9,10 @@ from objects.trash import Trash
 import random
 
 class Level1(Level):
-    def __init__(self, player: Player, screen: pygame.Surface, screen_pos=[], passed=False) -> None:
+    def __init__(self, player: Player, screen: pygame.Surface, screen_pos=[], passed=True) -> None:
         super().__init__(player, screen, passed)
         self.group = pygame.sprite.GroupSingle()
         self.screen_pos = screen_pos
-
         self.turtle_list = []
 
         for _ in range(10):

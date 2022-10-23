@@ -2,7 +2,6 @@
 import pygame 
 from player import Player
 from level import Level
-
 from levels.level_1 import Level1
 
 class Manager:
@@ -13,7 +12,8 @@ class Manager:
         self.levels = [
             Level1(self.player, self.screen, self.screen_pos),
         ]
-        self.active_level = self.levels[0]
+        self.level_index = 0
+        self.active_level = self.levels[self.level_index]
     
     def get_user_input(self):
         keys = pygame.key.get_pressed()
